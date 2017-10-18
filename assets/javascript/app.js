@@ -64,13 +64,9 @@ $('#start-button').on('click', function(){
 //QUESTION AND ANSWERS HTML 
 
 function gameHTML() {
-	$(".question").html("<p class='question-text'>" + triviaQA[questionNumber].question + "<p>")
-	for (var i = 0; i < 4; i++){
-		var answers = $('<div>');
-		answers.text(triviaQA[questionNumber].answerChoices[i]);
-		answers.addClass('answer-text');
-		$(".answers").append(answers);
-	}
+	$(".question").html("<p class='question-text'>" + triviaQA[questionNumber].question + "<p>");
+	gameHTML = "<p class='answerChoice'>A. " + triviaQA[questionNumber].answerChoices[0] + "</p><p class='answerChoice'>B. "+ triviaQA[questionNumber].answerChoices[1] +"</p><p class='answerChoice'>C. "+ triviaQA[questionNumber].answerChoices[2] +"</p><p class='answerChoice'>D. "+ triviaQA[questionNumber].answerChoices[3] +"</p>";
+	$(".answers").html(gameHTML);
 }
 
 //NEW GAME
@@ -96,27 +92,16 @@ function timer() {
 		if (counter > 0) {
 			counter--;
 		}
-		
 		$(".timer").html("Time Remaining : " + counter);
 	};
 }
 
 //ONCLICK ANSWERS AND MOVES TO NEXT QUESTION
 
-$(".answer-text").on("click", function () {
-	var rightAnswer = triviaQA[qusetionNumber].answer;
-	chosenAnswer = $(this).text();
-	answered = true; 
-	if (chosenAnswer === rightAnswer) {
-		correctAnswers++; 
-		clearInterval(timer.count);
-		//insert winner function here
-	} else {
-		incorrectAnswers++;
-		clearnInterval(timer.count);
-		//insert loser function here
-	}
-});
+
+
+//RESULT PAGE
+
 
 
 });
