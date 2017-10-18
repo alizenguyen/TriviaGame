@@ -48,6 +48,7 @@ var questionNumber = 0;
 var correctAnswers;
 var incorrectAnswers;
 var noAnswer;
+var answerChosen;
 
 
 //START BUTTON
@@ -82,7 +83,36 @@ function newGame() {
 
 //TIMER
 
-setTimeout(//INSERT FUNCTION, 1000*30)
+var timer = {
+	answerTimer: setinterval(count, 1000*20),
+	count: function () {
+		if (time > 0) {
+			timer.time--;
+			$(".timer").text(time)
+		}
+		if (time === 0) {
+			clearinterval()
+		}
+	}
+	resultCount: function () {
+		if (questionNumber < 8) {
+			questionNumber++; 
+			timer.count(); 
+		} else {
+			gameOver();
+		}
+	}
+};
+
+//ONCLICK ANSWERS AND MOVES TO NEXT QUESTION
+
+$(".answer-text").on("click", function () {
+	chosenAnswer = $(this)text();
+	if (chosenAnswer ===) {
+		
+	}
+});
+
 
 });
 
