@@ -49,6 +49,8 @@ var correctAnswers;
 var incorrectAnswers;
 var noAnswer;
 var answerChosen;
+var counter = 20; 
+var answered = false;
 
 
 //START BUTTON
@@ -56,6 +58,7 @@ var answerChosen;
 $('#start-button').on('click', function(){
 	$(this).hide();
 	newGame();
+	timer();
 });
 
 //QUESTION AND ANSWERS HTML 
@@ -83,33 +86,35 @@ function newGame() {
 
 //TIMER
 
-var timer = {
-	answerTimer: setinterval(count, 1000*20),
-	count: function () {
-		if (time > 0) {
-			timer.time--;
-			$(".timer").text(time)
+function timer() {
+	countDown = setInterval(quizCounter, 1000);
+	function quizCounter () {
+		if (counter === 0) {
+			clearInterval(countDown);
+			//insert funtion for loss by timeout
 		}
-		if (time === 0) {
-			clearinterval()
+		if (counter > 0) {
+			counter--;
 		}
-	}
-	resultCount: function () {
-		if (questionNumber < 8) {
-			questionNumber++; 
-			timer.count(); 
-		} else {
-			gameOver();
-		}
-	}
-};
+		
+		$(".timer").html("Time Remaining : " + counter);
+	};
+}
 
 //ONCLICK ANSWERS AND MOVES TO NEXT QUESTION
 
 $(".answer-text").on("click", function () {
-	chosenAnswer = $(this)text();
-	if (chosenAnswer ===) {
-		
+	var rightAnswer = triviaQA[qusetionNumber].answer;
+	chosenAnswer = $(this).text();
+	answered = true; 
+	if (chosenAnswer === rightAnswer) {
+		correctAnswers++; 
+		clearInterval(timer.count);
+		//insert winner function here
+	} else {
+		incorrectAnswers++;
+		clearnInterval(timer.count);
+		//insert loser function here
 	}
 });
 
