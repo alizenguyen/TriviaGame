@@ -124,7 +124,7 @@ function reset() {
 	$(".question").empty();
 	$(".timer").hide();
 	$(".answers").empty();
-	$(".result-page").html("DONE");
+	$(".result-page").empty();
 
 	questionNumber = 0;
 	correctAnswers = 0;
