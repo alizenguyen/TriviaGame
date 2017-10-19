@@ -52,6 +52,9 @@ var answerChosen;
 var counter = 20;
 var countDown; 
 var answered = false;
+var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8'];
+var backgroundaudio = new Audio("assets/pokemonopening.mp3")
+var buttonaudio = new Audio("assets/buttonsound.wav")
 
 
 //START BUTTON
@@ -66,6 +69,7 @@ $('#start-button').on('click', function(){
 	correctAnswers = 0;
 	incorrectAnswers = 0;
 	noAnswer = 0;
+	backgroundaudio.play();
 });
 
 //QUESTION AND ANSWERS HTML 
@@ -84,7 +88,7 @@ function correctAnswer() {
 	$(".question").empty();
 	$(".timer").hide();
 	$(".answers").empty();
-	$(".result-page").html("YOU GOT IT");
+	$(".result-page").html("<p class='answer-message'>YOU GOT IT!</p>" + '<img src = "assets/images/'+ gifArray[questionNumber] +'.gif" class="gif" width = "250px">');
 	setTimeout(questionAnswered, 1000*3);
 };
 
@@ -94,7 +98,7 @@ function wrongAnswer() {
 	$(".question").empty();
 	$(".timer").hide();
 	$(".answers").empty();
-	$(".result-page").html("YOU LOST");
+	$(".result-page").html("<p class='answer-message'>NICE TRY!</p>" + "<p class='correct-message'>The correct answer is </p>" + "<p class ='correct-answer'>" + triviaQA[questionNumber].answerChoices[triviaQA[questionNumber].answer] + ".</p>" + '<img src = "assets/images/'+ gifArray[questionNumber] +'.gif" class="gif" width = "250px">');
 	setTimeout(questionAnswered, 1000*3);
 };
 
@@ -104,7 +108,7 @@ function timeoutAnswer() {
 	$(".question").empty();
 	$(".timer").hide();
 	$(".answers").empty();
-	$(".result-page").html("TIME OUT");
+	$(".result-page").html("<p class='answer-message'>TIME'S OUT</p>" + "<p class='correct-message'>The correct answer is </p>" + "<p class ='correct-answer'>" + triviaQA[questionNumber].answerChoices[triviaQA[questionNumber].answer] + ".</p>" + '<img src = "assets/images/'+ gifArray[questionNumber] +'.gif" class="gif" width = "250px">');
 	setTimeout(questionAnswered, 1000*3);
 };
 
@@ -167,6 +171,7 @@ $(".answers").on("click", ".answerChoice", function(event) {
 	rightAnswer = triviaQA[questionNumber].answerChoices[triviaQA[questionNumber].answer];
 	console.log(answerChoice);
 	console.log(rightAnswer);
+	buttonaudio.play();
 	clearInterval(countDown)
 	if (answerChoice === rightAnswer) {
 		correctAnswer();
