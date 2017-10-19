@@ -111,7 +111,7 @@ function wrongAnswer() {
 };
 
 function timeoutAnswer() {
-	noAnswer+q
+	noAnswer++;
 	console.log(noAnswer);
 	$(".question").empty();
 	$(".timer").hide();
