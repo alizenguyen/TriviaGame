@@ -22,7 +22,7 @@ var triviaQA = [
 	},
 	{
 		question: "This Pokemon has a flame on its tail, and if it goes out, it won't survive. Who's that Pokemon?",
-		answerChoices: ["Flareon", "Charizard", "Charmander", "Rapidash"],
+		answerChoices: ["Flareon", "Growlithe", "Charmander", "Rapidash"],
 		answer: 2	
 	},
 	{
