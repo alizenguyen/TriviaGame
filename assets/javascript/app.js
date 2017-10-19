@@ -1,3 +1,6 @@
+$(".timer").hide();
+$("#restart-button").hide();
+
 $(document).ready(function() {
 
 //VARIABLES
@@ -25,7 +28,7 @@ var triviaQA = [
 	{
 		question: "How many pokemon were there during the first generation?",
 		answerChoices: ["150", "160", "155", "151"],
-		answer: 0
+		answer: 3
 	},
 	{
 		question: "What is the first region Ash explored during the first generation?",
@@ -59,8 +62,6 @@ var buttonaudio = new Audio("assets/buttonsound.wav")
 
 //START BUTTON
 
-$(".timer").hide();
-
 $('#start-button').on('click', function(){
 	$(this).hide();
 	$(".timer").show();
@@ -70,6 +71,13 @@ $('#start-button').on('click', function(){
 	incorrectAnswers = 0;
 	noAnswer = 0;
 	backgroundaudio.play();
+});
+
+//RESTART BUTTON
+
+$('#restart-button').on('click', function(){
+	$(this).hide();
+	reset();
 });
 
 //QUESTION AND ANSWERS HTML 
@@ -103,7 +111,7 @@ function wrongAnswer() {
 };
 
 function timeoutAnswer() {
-	noAnswer++;
+	noAnswer+q
 	console.log(noAnswer);
 	$(".question").empty();
 	$(".timer").hide();
@@ -132,7 +140,8 @@ function gameOver() {
 	$(".question").empty();
 	$(".timer").hide();
 	$(".answers").empty();
-	$(".result-page").html("<p>Your Results:</p>" + "<p>Correct Answers: " + correctAnswers + "</p>" + "<p>Wrong Answers: " + incorrectAnswers + "</p>"+ "<p>Unanswered: " + noAnswer + "</p>");
+	$(".result-page").html("<p class='results'>Your Results:</p>" + "<p class='results'>Correct Answers: " + correctAnswers + "</p>" + "<p class='results'>Wrong Answers: " + incorrectAnswers + "</p>"+ "<p class='results'>Unanswered: " + noAnswer + "</p>");
+	$("#restart-button").show();
 };
 //TIMER
 
