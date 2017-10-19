@@ -106,12 +106,12 @@ body {
 
 #start-button {
 	font-family: 'Press Start 2P', sans-serif;
-	font-size: 1.5em;
+	font-size: 1.25em;
 	width: 300px;
 	margin-top: 7%;
 	margin-left: 41%;
 	background-color: #21386E;
-	padding: 20px;
+	padding: 15px;
 }
 
 #restart-button {
