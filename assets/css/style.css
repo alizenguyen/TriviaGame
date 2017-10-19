@@ -1,3 +1,51 @@
 body {
 	background: url(../images/triviabackground.png);
 }
+
+.jumbotron {
+	text-align: center;
+	background-color: #FF623E;
+	height: 400px;
+}
+
+.pokemaster {
+	display: block;
+	text-align: center;
+	background-color: #FF8517;
+	padding: 20px 0px 20px 0px;
+	margin-top: -2%;
+
+}
+
+.main-content {
+	margin-top: 5%;
+}
+
+.question {
+	text-align: center;
+}
+
+.timer {
+	text-align: center;
+}
+
+.answers {
+	text-align: center;
+}
+
+.result-page{
+	text-align: center;
+}
+
+#titleText {
+	font-size: 40px;
+}
+
+#start-button {
+	width: 20%;
+	margin-top: 7%;
+	margin-left: 40%;
+	background-color: #385810;
+
+}
+
