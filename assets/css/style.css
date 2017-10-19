@@ -1,11 +1,11 @@
 body {
-	background: url(../images/triviabackground.png);
+	background: url(../images/triviabackgroundII.png);
 }
 
 .jumbotron {
 	text-align: center;
 	background-color: #FF623E;
-	height: 400px;
+	height: 410px;
 }
 
 .pokemaster {
@@ -13,7 +13,10 @@ body {
 	text-align: center;
 	background-color: #FF8517;
 	padding: 20px 0px 20px 0px;
-	margin-top: -2%;
+	margin-top: -5%;
+	font-size: 20px;
+	color: white;
+	letter-spacing: 3px;
 
 }
 
@@ -45,7 +48,7 @@ body {
 	width: 20%;
 	margin-top: 7%;
 	margin-left: 40%;
-	background-color: #385810;
+	background-color: #21386E;
 
 }
 
