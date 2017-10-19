@@ -49,37 +49,87 @@ var correctAnswers;
 var incorrectAnswers;
 var noAnswer;
 var answerChosen;
-var counter = 20; 
+var counter = 20;
+var countDown; 
 var answered = false;
 
 
 //START BUTTON
 
+$(".timer").hide();
+
 $('#start-button').on('click', function(){
 	$(this).hide();
-	newGame();
+	$(".timer").show();
+	gameHTML();
 	timer();
+	correctAnswers = 0;
+	incorrectAnswers = 0;
+	noAnswer = 0;
 });
 
 //QUESTION AND ANSWERS HTML 
 
 function gameHTML() {
 	$(".question").html("<p class='question-text'>" + triviaQA[questionNumber].question + "<p>");
-	gameHTML = "<p class='answerChoice'>A. " + triviaQA[questionNumber].answerChoices[0] + "</p><p class='answerChoice'>B. "+ triviaQA[questionNumber].answerChoices[1] +"</p><p class='answerChoice'>C. "+ triviaQA[questionNumber].answerChoices[2] +"</p><p class='answerChoice'>D. "+ triviaQA[questionNumber].answerChoices[3] +"</p>";
-	$(".answers").html(gameHTML);
-}
+	answerInput = "<p class='answerChoice'>" + triviaQA[questionNumber].answerChoices[0] + "</p><p class='answerChoice'>"+ triviaQA[questionNumber].answerChoices[1] +"</p><p class='answerChoice'>"+ triviaQA[questionNumber].answerChoices[2] +"</p><p class='answerChoice'>"+ triviaQA[questionNumber].answerChoices[3] +"</p>";
+	$(".answers").html(answerInput);
+};
 
-//NEW GAME
+//RESULT PAGE
 
-function newGame() {
-	$(".result-page").empty();
+function correctAnswer() {
+	correctAnswers++;
+	console.log(correctAnswers);
+	$(".question").empty();
+	$(".timer").hide();
+	$(".answers").empty();
+	$(".result-page").html("YOU GOT IT");
+	setTimeout(questionAnswered, 1000*3);
+};
+
+function wrongAnswer() {
+	incorrectAnswers++;
+	console.log(incorrectAnswers);
+	$(".question").empty();
+	$(".timer").hide();
+	$(".answers").empty();
+	$(".result-page").html("YOU LOST");
+	setTimeout(questionAnswered, 1000*3);
+};
+
+function timeoutAnswer() {
+	noAnswer++;
+	console.log(noAnswer);
+	$(".question").empty();
+	$(".timer").hide();
+	$(".answers").empty();
+	$(".result-page").html("TIME OUT");
+	setTimeout(questionAnswered, 1000*3);
+};
+
+function reset() {
+	$(".question").empty();
+	$(".timer").hide();
+	$(".answers").empty();
+	$(".result-page").html("DONE");
+
+	questionNumber = 0;
 	correctAnswers = 0;
 	incorrectAnswers = 0;
 	noAnswer = 0;
+	counter = 20;
 
 	gameHTML();
-}
+	timer();
+};
 
+function gameOver() {
+	$(".question").empty();
+	$(".timer").hide();
+	$(".answers").empty();
+	$(".result-page").html("<p>Your Results:</p>" + "<p>Correct Answers: " + correctAnswers + "</p>" + "<p>Wrong Answers: " + incorrectAnswers + "</p>"+ "<p>Unanswered: " + noAnswer + "</p>");
+};
 //TIMER
 
 function timer() {
@@ -87,22 +137,43 @@ function timer() {
 	function quizCounter () {
 		if (counter === 0) {
 			clearInterval(countDown);
-			//insert funtion for loss by timeout
+			timeoutAnswer();
 		}
 		if (counter > 0) {
 			counter--;
 		}
-		$(".timer").html("Time Remaining : " + counter);
+		$(".timer-number").html(counter);
 	};
-}
+};
+
+function questionAnswered() {
+	if (questionNumber < 7) {
+		questionNumber++;	
+		console.log(questionNumber);
+		gameHTML();
+		$(".result-page").empty();
+		$(".timer").show();
+		counter = 20;
+		timer();
+	} else {
+		gameOver();
+	}
+};
 
 //ONCLICK ANSWERS AND MOVES TO NEXT QUESTION
 
-
-
-//RESULT PAGE
-
-
+$(".answers").on("click", ".answerChoice", function(event) {
+	answerChoice = $(this).text();
+	rightAnswer = triviaQA[questionNumber].answerChoices[triviaQA[questionNumber].answer];
+	console.log(answerChoice);
+	console.log(rightAnswer);
+	clearInterval(countDown)
+	if (answerChoice === rightAnswer) {
+		correctAnswer();
+	} else if (answerChoice !== rightAnswer) {
+		wrongAnswer();
+	} 
+});
 
 });
 
